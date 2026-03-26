@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1 Cabeza - Hamburguesas y Comidas Rápidas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><i class="fa-solid fa-fire-burner"></i> X1 Cabeza</h1>
+            <p>Capitán Sarmiento, Pcia. de Buenos Aires</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>El auténtico sabor argentino</h2>
+            <p>Hamburguesas, Bondiolas, Lomos y Milanesas a la parrilla.</p>
+            <a href="#menu" class="btn">Mirá el Menú</a>
+        </div>
+        <img src="img/horse.png" class="deco-horse" alt="Caballo decorativo">
+    </section>
+
+    <div class="separator-wood"></div>
+
+    <section id="menu" class="menu-section">
+        <h2><i class="fa-solid fa-utensils"></i> Nuestro Menú</h2>
+        
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="hamburguesas">Hamburguesas</button>
+            <button class="filter-btn" data-filter="bondiolas">Bondiolas</button>
+            <button class="filter-btn" data-filter="lomos">Lomos</button>
+            <button class="filter-btn" data-filter="milanesas">Milanesas</button>
+        </div>
+
+        <div class="menu-grid" id="menu-container">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>X1 Cabeza</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Capitán Sarmiento, Buenos Aires</p>
+                <p><i class="fa-brands fa-whatsapp"></i> +54 9 11 1234-5678</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 X1 Cabeza - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Chat IA -->
+    <div id="chat-widget">
+        <button id="chat-toggle" aria-label="Abrir asistente de pedidos">
+            <i class="fa-solid fa-robot"></i>
+            <span class="pulse-ring"></span>
+        </button>
+        <div id="chat-panel" class="hidden">
+            <div class="chat-header">
+                <h3><i class="fa-solid fa-robot"></i> Asistente X1 Cabeza</h3>
+                <button id="chat-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages go here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribí tu mensaje o pedido...">
+                <button id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
