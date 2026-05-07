@@ -11,6 +11,16 @@ const menuItems = [
 // Renderizar Menú
 const menuContainer = document.getElementById('menu-container');
 
+function getCategoryImage(category) {
+    switch(category) {
+        case 'hamburguesas': return 'img/burger.png';
+        case 'bondiolas': return 'img/bondiola.png';
+        case 'lomos': return 'img/lomo.png';
+        case 'milanesas': return 'img/milanesa.png';
+        default: return 'img/menu.png';
+    }
+}
+
 function renderMenu(items) {
     menuContainer.innerHTML = '';
     items.forEach(item => {
@@ -18,7 +28,7 @@ function renderMenu(items) {
         card.className = 'menu-card';
         card.innerHTML = `
             <div class="card-img-container">
-                <img src="img/menu.png" alt="${item.name}">
+                <img src="${getCategoryImage(item.category)}" alt="${item.name}">
             </div>
             <div class="card-content">
                 <div class="card-title">
@@ -61,6 +71,7 @@ const chatSend = document.getElementById('chat-send');
 const chatMessages = document.getElementById('chat-messages');
 
 let chatContext = 'greeting'; // states: greeting, ordering, confirm
+let currentOrder = '';
 
 function toggleChat() {
     chatPanel.classList.toggle('hidden');
@@ -108,6 +119,7 @@ function orderItem(itemName) {
     }
     setTimeout(() => {
         addUserMessage(`Quiero pedir: ${itemName}`);
+        currentOrder = itemName;
         setTimeout(() => {
             addAiMessage(`¡Excelente elección! Agregué ${itemName} a tu pedido. ¿Querés agregarle unas papas fritas rústicas o algo más, o cerramos el pedido acá?`);
             chatContext = 'confirm';
@@ -133,15 +145,26 @@ function processAiResponse(text) {
             addAiMessage("Joya, mirá nuestro menú en la página para ver las opciones, o decime si querés Carne, Cerdo o Pollo así te recomiendo.");
         }
     } else if (chatContext === 'ordering') {
+        currentOrder = text;
         addAiMessage("¡Dale, marchando eso! 🤤 ¿Querés sumarle unas papas con cheddar, unas empanadas fritas de entrada, o ya lo cerramos?");
         chatContext = 'confirm';
     } else if (chatContext === 'confirm') {
+        let whatsappMsg = "";
         if(text.includes('si') || text.includes('papas') || text.includes('dale') || text.includes('agrega')) {
-            addAiMessage("¡Perfecto! Sumado al pedido. En 20-30 minutitos pasá a retirarlo por nuestro local acá en Capitán Sarmiento, o avisanos si es para envío. ¡Gracias por elegir X1 Cabeza! 🐴🔥");
+            addAiMessage("¡Perfecto! Sumado al pedido. Te redirijo a WhatsApp para coordinar el pago y envío. ¡Gracias por elegir X1 Cabeza! 🐴🔥");
+            whatsappMsg = `Hola! Vengo del asistente virtual. Quiero pedir: ${currentOrder}. Y le agrego papas/extras.`;
         } else {
-             addAiMessage("¡Listo el pollo y pelada la gallina! Tu pedido está en marcha. En 20 minutitos está listo para retirar. ¡Abrazo grande!");
+             addAiMessage("¡Listo el pollo y pelada la gallina! Te abro WhatsApp para terminar el pedido. ¡Abrazo grande!");
+             whatsappMsg = `Hola! Vengo del asistente virtual. Quiero pedir: ${currentOrder}. Solo eso.`;
         }
+        
+        setTimeout(() => {
+            const phone = "5491112345678"; // Poner el número de WhatsApp real acá
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+        }, 1500);
+
         chatContext = 'greeting'; // Reset
+        currentOrder = '';
     }
 }
 
