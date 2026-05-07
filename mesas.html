@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1 Cabeza - Gestión de Mesas</title>
+    <link rel="stylesheet" href="mesas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><i class="fa-solid fa-clipboard-list"></i> X1 Cabeza - Sistema de Mesas</h1>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-store"></i> Volver al Sitio Web</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="mesas-grid" id="mesas-grid">
+            <!-- Rendered by JS -->
+        </div>
+    </main>
+
+    <!-- Modal Mesa -->
+    <div id="mesa-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Mesa X</h2>
+                <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="menu-selection">
+                    <h3>Agregar Producto</h3>
+                    <div style="display: flex;">
+                        <select id="product-select">
+                            <option value="">Seleccione un producto...</option>
+                            <!-- Populated by JS -->
+                        </select>
+                        <button class="btn btn-primary" id="add-product-btn"><i class="fa-solid fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+                
+                <div class="order-list">
+                    <h3>Detalle de Pedido</h3>
+                    <ul id="order-items">
+                        <!-- Items here -->
+                    </ul>
+                    <div class="order-total">
+                        Total: $<span id="total-price">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-success" id="cobrar-btn"><i class="fa-solid fa-cash-register"></i> Cobrar y Liberar Mesa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="mesas.js"></script>
+</body>
+</html>
